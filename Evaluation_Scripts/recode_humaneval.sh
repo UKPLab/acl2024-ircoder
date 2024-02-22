@@ -2,7 +2,7 @@ modelname="$1"
 
 for split in "func_name"
 do
-    python /vllm-code-harness/main.py \
+    python /code-harness/main.py \
         --model $modelname \
         --max_length_generation 1024 \
         --tasks "perturbed-humaneval-$split-num_seeds_5" \

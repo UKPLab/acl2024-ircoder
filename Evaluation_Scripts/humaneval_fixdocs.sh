@@ -2,7 +2,7 @@ modelname="$1"
 
 for lang in "cpp" "go" "python" "rust"
 do
-    python /vllm-code-harness/main.py \
+    python /code-harness/main.py \
         --model $modelname \
         --max_length_generation 1024 \
         --prompt "ircoder" \

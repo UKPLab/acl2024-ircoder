@@ -2,7 +2,7 @@ modelname="$1"
 
 for lang in "python" "go" "ruby"
 do
-    python /vllm-code-harness/main.py \
+    python /code-harness/main.py \
         --model $modelname \
         --max_length_generation 512 \
         --tasks "codexglue_code_to_text-$lang" \

@@ -4,7 +4,7 @@ for lang in "d" "cpp" "go" "py" "rb" "rs" "swift"
 do
     for temperature in 0.2 0.8
     do
-        python /vllm-code-harness/main.py \
+        python /code-harness/main.py \
             --model $modelname \
             --max_length_generation 1024 \
             --tasks "multiple-$lang" \
