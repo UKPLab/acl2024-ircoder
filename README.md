@@ -1,5 +1,16 @@
 # IRCoder
 
+> **Abstract:**
+> 
+> Code understanding and generation have fast become some of the most popular applications of language models (LMs). Nonetheless, research on multilingual aspects of Code-LMs (i.e., LMs for code generation) such as cross-lingual transfer between different programming languages, language-specific data augmentation and post-hoc LM adaptation, and exploitation of data sources other than source code, has been much scarcer than for their natural language counterparts. In particular, most mainstream Code-LMs have been pre-trained on source code files alone. In this work, we investigate the prospect of leveraging readily available compiler intermediate representations---shared across programming languages---to improve the multilingual capabilities of Code-LMs and facilitate cross-lingual transfer.
+> 
+> To this end, we first compile SLTrans, a parallel dataset consisting of nearly 4M self-contained source code files coupled with respective intermediate representations. Next, starting from various base Code-LMs (ranging in size from 1.1B to 7.3B parameters), we carry out continued causal language modeling training on SLTrans, forcing the Code-LMs to (1) learn the IR language and (2) align the IR constructs with respective constructs of various programming languages. Our resulting models, dubbed IRCoder, display sizeable and consistent gains across a wide variety of code generation tasks and metrics, including prompt robustness, multilingual code completion, code understanding, and instruction following.
+
+Contact person: [Indraneil Paul](mailto:indraneil.paul@tu-darmstadt.de) 
+
+[UKP Lab](https://www.ukp.tu-darmstadt.de/) | [TU Darmstadt](https://www.tu-darmstadt.de/
+)
+
 The code accompanying ACL 24 submission IRCoder.
 
 We provide scripts to reproduce the creation of the size-optimized and performance-optimized IR from source files. We also provide the code to reproduce the evaluations we run in the paper.
