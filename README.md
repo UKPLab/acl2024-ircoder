@@ -1,9 +1,9 @@
 # IRCoder
 
 > **Abstract:**
-> 
+>
 > Code understanding and generation have fast become some of the most popular applications of language models (LMs). Nonetheless, research on multilingual aspects of Code-LMs (i.e., LMs for code generation) such as cross-lingual transfer between different programming languages, language-specific data augmentation and post-hoc LM adaptation, and exploitation of data sources other than source code, has been much scarcer than for their natural language counterparts. In particular, most mainstream Code-LMs have been pre-trained on source code files alone. In this work, we investigate the prospect of leveraging readily available compiler intermediate representations---shared across programming languages---to improve the multilingual capabilities of Code-LMs and facilitate cross-lingual transfer.
-> 
+>
 > To this end, we first compile SLTrans, a parallel dataset consisting of nearly 4M self-contained source code files coupled with respective intermediate representations. Next, starting from various base Code-LMs (ranging in size from 1.1B to 7.3B parameters), we carry out continued causal language modeling training on SLTrans, forcing the Code-LMs to (1) learn the IR language and (2) align the IR constructs with respective constructs of various programming languages. Our resulting models, dubbed IRCoder, display sizeable and consistent gains across a wide variety of code generation tasks and metrics, including prompt robustness, multilingual code completion, code understanding, and instruction following.
 
 Contact person: [Indraneil Paul](mailto:indraneil.paul@tu-darmstadt.de) 
@@ -17,7 +17,7 @@ We provide scripts to reproduce the creation of the size-optimized and performan
 
 ## Dataset Creation
 
-We provide multiprocessing-based sample scripts to convert the source files to IR. The scripts are located in the `IR_Compilation_Sample_Scripts` directory. The scripts are named `Compile_*.py` where `*` is the name of the language split. The scripts are designed to be run in the following way:
+We provide multiprocessing-based sample scripts to convert the source files to IR. Make sure to have the source files in a directory segregated by language. So the 1121st of the Python language should be in the `Python/Source_1121/Source.py` file. The scripts are located in the `IR_Compilation_Sample_Scripts` directory. The scripts are named `Compile_*.py` where `*` is the name of the language split. Make sure to modify the root paths in the scripts according to your setup. The scripts are designed to be run in the following way:
 
 ```bash
 python Compile_*.py \
@@ -25,7 +25,7 @@ python Compile_*.py \
     --subset 1400000
 ```
 
-The `--num_workers` flag specifies the number of processes to use for the conversion. The `--subset` flag specifies the number of files to convert. The scripts will convert the files in the `data` directory and save the IR in the `IR` directory.
+The `--num_workers` flag specifies the number of processes to use for the conversion. The `--subset` flag specifies the number of files to convert. Setting the `--subset` flag to `25000`, for example, will convert all the source files in the `Source_0` to `Source_24999` directory. The scripts will convert the files in the `data` directory and save the IR in the `IR` directory.
 
 ## IR Based Continued Pre-Training
 
