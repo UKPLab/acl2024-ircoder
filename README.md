@@ -33,11 +33,26 @@ python Compile_*.py \
     --subset 1400000
 ```
 >
-The `--num_workers` flag specifies the number of processes to use for the conversion. The `--subset` flag specifies the number of files to convert. Setting the `--subset` flag to `25000`, for example, will convert all the source files in the `Source_0` to `Source_24999` directory. The scripts will convert the files in the `data` directory and save the IR in the `IR` directory.
-
+The `--num_workers` flag specifies the number of processes to use for the conversion. The `--subset` flag specifies the number of files to convert. Setting the `--subset` flag to `25000`, for example, will convert all the source files in the `Source_0` to `Source_24999` directory. The scripts will convert the files in the `data` directory and save the IR in the `IR` directory. Create a pairwise dataset from this and upload to HuggingFace datasets, with one field containing both the contents in the format mentioned in the paper.
+>
+Due to the presence of near-duplicate files in programming language source file corpora, we provide a script to remove the near-duplicates. This can be run as follows:
+>
+```bash
+python Misc/minhash_deduplication.py --dataset "YOUR_DATASET_NAME" \
+    --split "train" \
+    --column "content" \
+    --min-ngram-size 8 \
+    --threshold 0.5 \
+    --output "YOUR_OUTPUT_DIR" \
+    --map-parallelism 40 \
+    --filter-parallelism 40
+```
+>
+For more agressive deduplication raise the `min-ngram-size` and lower the `threshold`. The script will remove the near-duplicates and save the dataset in the `output` directory.
+>
 ## IR Based Continued Pre-Training
 
-We provide the code to run the continued pre-training of the IR-based models. The script is located in the `Training_Scripts` directory. It requires a HuggingFace dataset and a HuggingFace model to run. Create a pairwise dataset of source code and IR and upload it to the HuggingFace datasets.
+We provide the code to run the continued pre-training of the IR-based models. The script is located in the `Training_Scripts` directory. It requires a HuggingFace dataset and a HuggingFace model to run. Create a pairwise dataset of source code and IR (as shown above) and upload it to the HuggingFace datasets.
 >
 The script is named `continued_pretrain.py`. The script is designed to be run as follows:
 >
