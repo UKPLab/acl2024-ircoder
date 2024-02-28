@@ -15,14 +15,14 @@ This repo contains the code accompanying ACL 24 submission IRCoder. We provide s
 
 ## Setup and Workflow
 
-Clone the repository and follow the workflow to reproduce the experiments.
-
+Clone the repository and follow the workflow to reproduce the experiments. For training we provide a dockerfile to setup the training environment complete with compiled Apex optimizations and flash attention. The dockerfile is located in the `Misc` directory as `Training.Dockerfile`. Similarly, we provide a dockerfile to setup the evaluation environment. The dockerfile is located in the `Misc` directory as `Evaluation.Dockerfile`. Alternatively, one could install the dependencies in the `requirements.txt` file and get started in their CLI, though this is not recommended due to the need to execute model generated code.
+>
 1. Create the pair-wise dataset of source code and IR.
 2. Run the continued pre-training of the base models.
 3. Instruciton tuning of the models.
 4. Run the zero-shot tasks evaluation.
 5. Run the commit chronicle training and evaluation.
-
+>
 ## Dataset Creation
 
 We provide multiprocessing-based sample scripts to convert the source files to IR. Make sure to have the source files in a directory segregated by language. So the 1121st of the Python language should be in the `Python/Source_1121/Source.py` file. The scripts are located in the `IR_Compilation_Sample_Scripts` directory. The scripts are named `Compile_*.py` where `*` is the name of the language split. Make sure to modify the root paths in the scripts according to your setup. The scripts are designed to be run in the following way:
