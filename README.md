@@ -197,7 +197,7 @@ This repository contains experimental software and is published for the sole pur
 ## Citation
 
 ```bib
-@article{paul2022ircoder,
+@article{paul2024ircoder,
   title={IRCoder: Leveraging Intermediate Representations for Multilingual Code Understanding and Generation},
   author={Paul, Indraneil and Luo, Jun and Glavas, Goran and Gurevych, Iryna},
   venue=CoRR,
