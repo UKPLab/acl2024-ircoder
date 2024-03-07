@@ -2,7 +2,8 @@
 
 # IRCoder: Intermediate Representations Make Language Models Robust Multilingual Code Generators
 
-[![arXiv](https://img.shields.io/badge/arXiv-2305.06156-b31b1b.svg)](https://arxiv.org/abs/2403.03894v1) 
+[![arXiv](https://img.shields.io/badge/arXiv-2403.03894-b31b1b.svg)](https://arxiv.org/abs/2403.03894)
+[![The Vault on HuggingFace datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Datasets-SLTrans-yellow?style=flat)](https://huggingface.co/datasets/UKPLab/SLTrans)
 
 </div>
 
