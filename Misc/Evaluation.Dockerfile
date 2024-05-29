@@ -9,7 +9,7 @@ ENV CUDA_HOME=/usr/local/cuda \
     GOPATH="/root/.go" \
     GO111MODULE="off"
 
-# Setup System Utilities and Languages: C, C++, Java, Perl, R, Ruby, Scala and lang-specific dependencies like Boost (C++)
+# Setup System Utilities and Languages: C, C++, Java, Lua, Perl, R, Ruby, Scala and lang-specific dependencies like Boost (C++)
 RUN apt-get update --yes --quiet \
     && apt-get upgrade --yes --quiet \
     && DEBIAN_FRONTEND=noninteractive apt-get install --yes --quiet --no-install-recommends \
@@ -53,6 +53,7 @@ RUN apt-get update --yes --quiet \
         libxrender-dev \
         lsof \
         lua5.3 \
+        lua-unit \
         make \
         moreutils \
         net-tools \
@@ -106,6 +107,13 @@ RUN apt install -yqq mono-devel
 RUN curl https://download.swift.org/swift-5.7-release/ubuntu2204/swift-5.7-RELEASE/swift-5.7-RELEASE-ubuntu22.04.tar.gz | tar xz
 ENV PATH="/swift-5.7-RELEASE-ubuntu22.04/usr/bin:${PATH}"
 
+# Julia
+RUN curl https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.2-linux-x86_64.tar.gz | tar xz
+ENV PATH="/julia-1.8.2/bin:${PATH}"
+
+# JavaTuples
+RUN mkdir /usr/multiple && wget https://repo.mavenlibs.com/maven/org/javatuples/javatuples/1.2/javatuples-1.2.jar -O /usr/multiple/javatuples-1.2.jar
+
 # Setup base Python to bootstrap Mamba
 RUN add-apt-repository --yes ppa:deadsnakes/ppa \
     && apt-get update --yes --quiet
@@ -128,7 +136,7 @@ RUN wget -O /tmp/Miniforge.sh https://github.com/conda-forge/miniforge/releases/
     && source /Miniforge/etc/profile.d/conda.sh \
     && source /Miniforge/etc/profile.d/mamba.sh \
     && mamba update -y -q -n base -c defaults mamba \
-    && mamba create -y -q -n inference python=3.10 \
+    && mamba create -y -q -n inference python=3.11 setuptools=69.5.1 \
     && mamba activate inference \
     && mamba install -y -q -c conda-forge \
         charset-normalizer \
@@ -137,7 +145,7 @@ RUN wget -O /tmp/Miniforge.sh https://github.com/conda-forge/miniforge/releases/
         mkl \
         mkl-include \
         numpy \
-        pandas \
+        pandas I am running a few minutes late; my previous meeting is running over.
         scikit-learn \
         wandb \
     && mamba install -y -q -c pytorch magma-cuda121 \
@@ -170,8 +178,8 @@ RUN source /Miniforge/etc/profile.d/conda.sh \
         seqeval \
         'setuptools>=49.4.0' \
         termcolor \
-        'transformers>=4.25.1' \
-        'vllm==0.2.6' \
+        'transformers>=4.36.1' \
+        'vllm==0.4.0' \
         wheel
 
 # Install Flash Attention
@@ -180,4 +188,4 @@ RUN source /Miniforge/etc/profile.d/conda.sh \
     && mamba activate inference \
     && export MAX_JOBS=$(($(nproc) - 2)) \
     && pip install --no-cache-dir ninja packaging \
-    && pip install flash-attn==2.4.2 --no-build-isolation
+    && pip install flash-attn==2.5.8 --no-build-isolation
