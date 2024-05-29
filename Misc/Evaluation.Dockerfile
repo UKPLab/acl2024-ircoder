@@ -145,7 +145,7 @@ RUN wget -O /tmp/Miniforge.sh https://github.com/conda-forge/miniforge/releases/
         mkl \
         mkl-include \
         numpy \
-        pandas I am running a few minutes late; my previous meeting is running over.
+        pandas \
         scikit-learn \
         wandb \
     && mamba install -y -q -c pytorch magma-cuda121 \
