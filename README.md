@@ -226,6 +226,17 @@ do
 done
 ```
 >
+## SLTrans Dataset
+>
+The SLTrans dataset comprises source code and LLVM IR pairs generated from accepted and de-duped programming contest solutions. The dataset is divided into language configs and mode splits. The language can be one of `C`, `C++`, `D`, `Fortran`, `Go`, `Haskell`, `Nim`, `Objective-C`, `Python`, `Rust` and `Swift`, indicating the source files' languages. The mode split indicates the compilation mode, which can be `Size_Optimized` or `Perf_Optimized`.
+
+Once you have submitted an access request which has been approved, loading the dataset can be done as follows:
+>
+```python
+from datasets import load_dataset
+dataset = load_dataset("UKPLab/SLTrans", "C", split="Size_Optimized")
+```
+>
 ## Experimental Disclaimer
 
 This repository contains experimental software and is published for the sole purpose of giving additional background details on the respective publication.
